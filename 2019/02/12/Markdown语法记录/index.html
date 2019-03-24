@@ -19,7 +19,7 @@
 <meta property="og:url" content="http://zhucj.top/2019/02/12/Markdown语法记录/index.html">
 <meta property="og:site_name" content="zhucj-blog">
 <meta property="og:description" content="一、标题标题前加上“#”号，通常一个“#”号表示为一级标题，两个即为二级标题以此类推。 示例：## 标题 二、字体加粗：在要加粗的文字两边加上两个“*”号。示例：**加粗** 效果： 加粗 斜体：在文字两边加上一个“*”号。示例：*斜体* 效果：斜体 斜体加粗：在文字两边加上三个“*”号。示例：***斜体加粗*** 效果：斜体加粗 删除线：在文字两边加上两个“~”号。示例：~删除线~ 效果： 删除">
-<meta property="og:locale" content="default">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-03-24T12:19:50.028Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Markdown的语法记录">
@@ -48,11 +48,13 @@
   <div class="head-box global-width">
     <nav class="nav-box nav-right">
       
-        <a class="nav-item" href="/" title="">首页</a>
+        <a class="nav-item" href="/" title="">主页</a>
       
         <a class="nav-item" href="/archives" title="">归档</a>
       
-        <a class="nav-item" href="/picture" title="">照片墙</a>
+        <a class="nav-item" href="/" title="">标签</a>
+      
+        <a class="nav-item" href="/" title="">照片墙</a>
       
     </nav>
   </div>
@@ -192,26 +194,31 @@ gitment.render('gitmentContainer')
 </div>
 
   
-    
+    <div class="widget tag">
+  <h3 class="title">日历云</h3>
+  <div id="calendar"></div>
+</div>
 
   
     
 
+  
+    
   
     
   
     
   <div class="widget-box">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li></ul>
     </div>
   </div>
 
   
     
   <div class="widget-box">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
         
@@ -229,7 +236,7 @@ gitment.render('gitmentContainer')
       <footer id="footer">
   <div class="foot-box global-width">
     &copy; 2019 zhucj &nbsp;&nbsp;
-    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    驱动于 <a href="http://hexo.io/" target="_blank">Hexo</a>
     &nbsp;|&nbsp;主题 <a href="https://github.com/yiluyanxia/hexo-theme-antiquity">antiquity</a>
     <br>
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
@@ -247,16 +254,30 @@ gitment.render('gitmentContainer')
 <script src="/js/script.js"></script>
 
 
+<!-- add calendar widget -->
+
+  <script src="/js/calendar.js"></script>
+  <script src="/js/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    
+      $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+    
+    });
+  </script>
+
 
     </div>
     <nav id="mobile-nav" class="mobile-nav-box">
   <div class="mobile-nav-img mobile-nav-top"></div>
   
-    <a href="/" class="mobile-nav-link">首页</a>
+    <a href="/" class="mobile-nav-link">主页</a>
   
     <a href="/archives" class="mobile-nav-link">归档</a>
   
-    <a href="/picture" class="mobile-nav-link">照片墙</a>
+    <a href="/" class="mobile-nav-link">标签</a>
+  
+    <a href="/" class="mobile-nav-link">照片墙</a>
   
   <div class="mobile-nav-img  mobile-nav-bottom"></div>
 </nav>
