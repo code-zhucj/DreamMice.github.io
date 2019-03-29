@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>多线程子Thread中各方法的解析记录（一） | zhucj-blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  <meta name="keywords" content="zhucj-blog">
+  
+  <meta name="description" content="背景本系列文章主要是对阅读《java多线程核心技术》后的总结以及对线程API的归纳并对我所认为重要的内容进行记录，方便日后查看。 Thread与Thread对象线程类中Thread.方法与thread.方法的区别：前者主要是对执行代码的线程进行操作，而后者则是对该线程对象进行操作。对于Thread.currentThread()获取的是执行当前代码的线程。对于创建的MyThread而言，执行它构造">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多线程子Thread中各方法的解析记录（一）">
+<meta property="og:url" content="http://zhucj.top/2019/03/29/多线程之Thread中各方法解析记录（一）/index.html">
+<meta property="og:site_name" content="zhucj-blog">
+<meta property="og:description" content="背景本系列文章主要是对阅读《java多线程核心技术》后的总结以及对线程API的归纳并对我所认为重要的内容进行记录，方便日后查看。 Thread与Thread对象线程类中Thread.方法与thread.方法的区别：前者主要是对执行代码的线程进行操作，而后者则是对该线程对象进行操作。对于Thread.currentThread()获取的是执行当前代码的线程。对于创建的MyThread而言，执行它构造">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-29T13:26:57.957Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="多线程子Thread中各方法的解析记录（一）">
+<meta name="twitter:description" content="背景本系列文章主要是对阅读《java多线程核心技术》后的总结以及对线程API的归纳并对我所认为重要的内容进行记录，方便日后查看。 Thread与Thread对象线程类中Thread.方法与thread.方法的区别：前者主要是对执行代码的线程进行操作，而后者则是对该线程对象进行操作。对于Thread.currentThread()获取的是执行当前代码的线程。对于创建的MyThread而言，执行它构造">
+  
+    <link rel="alternate" href="/atom.xml" title="zhucj-blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/default-avatar.jpeg">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+</head>
+</html>
+<body>
+  <div id="fullpage" class="mobile-nav-right">
+    
+      <div id="wrapper" title="">
+    
+
+      <header id="header">
+  <div id="nav-toggle" class="nav-toggle"></div>
+  <div class="head-box global-width">
+    <nav class="nav-box nav-right">
+      
+        <a class="nav-item" href="/" title="">主页</a>
+      
+        <a class="nav-item" href="/archives" title="">归档</a>
+      
+        <a class="nav-item" href="/" title="">标签</a>
+      
+        <a class="nav-item" href="/" title="">照片墙</a>
+      
+    </nav>
+  </div>
+</header>
+      <div id="middlecontent" title class="global-width sidebar-right">
+        <section id="main"><article id="post-多线程之Thread中各方法解析记录（一）" class="article global-container article-type-post" itemscope="" itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      多线程子Thread中各方法的解析记录（一）
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2019/03/29/多线程之Thread中各方法解析记录（一）/" class="article-date">
+  <time datetime="2019-03-29T13:27:35.388Z" itemprop="datePublished">2019-03-29</time>
+</a>
+    
+    
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+  </div>
+  
+    <span id="busuanzi_container_page_pv">
+      本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+    </span>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-doorframe" itemprop="articleBody">
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>本系列文章主要是对阅读《java多线程核心技术》后的总结以及对线程API的归纳并对我所认为重要的内容进行记录，方便日后查看。</p>
+<h2 id="Thread与Thread对象"><a href="#Thread与Thread对象" class="headerlink" title="Thread与Thread对象"></a>Thread与Thread对象</h2><p>线程类中Thread.方法与thread.方法的区别：前者主要是对执行代码的线程进行操作，而后者则是对该线程对象进行操作。<br>对于Thread.currentThread()获取的是执行当前代码的线程。对于创建的MyThread而言，执行它构造方法的是线程main，而执行run方法的是线程myThread。</p>
+<p>验证代码如下：<br><div class="highlight-box" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//创建一个线程类</span><br><span class="line">public class MyThread extends Thread&#123;</span><br><span class="line"></span><br><span class="line">	   public MyThread(String name)&#123;</span><br><span class="line">		   System.out.println(&quot;执行构造方法的线程：&quot;+Thread.currentThread().getName());</span><br><span class="line">		   super.setName(name);</span><br><span class="line">	   &#125;</span><br><span class="line"></span><br><span class="line">	   public void run()&#123;</span><br><span class="line">		  System.out.println(&quot;执行run方法的线程：&quot;+Thread.currentThread().getName());</span><br><span class="line">	   &#125;</span><br><span class="line">&#125;</span><br><span class="line">//测试类</span><br><span class="line">public class Test&#123;</span><br><span class="line">  public static void main(String[] args)&#123;</span><br><span class="line">    MyThread mt = new MyThread(&quot;myThread&quot;);</span><br><span class="line">	  mt.start();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></p>
+<!--
+<iframe src="https://zhucj.top/" width="880" height="500" frameborder="0" allowfullscreen></iframe>
+<p>–&gt;</p>
+-->
+      
+    </div>
+    
+      <footer class="article-footer">
+        完
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  <div class="article-nav-block">
+    
+  </div>
+  <div class="article-nav-block">
+    
+      <a href="/2019/03/29/IO流原理总结/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">IO流原理总结</div>
+        <strong class="article-nav-caption"></strong>
+      </a>
+    
+  </div>
+</nav>
+
+    
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  owner: '',
+  repo: '',
+  oauth: {
+    client_id: '',
+    client_secret: '',
+  },
+})
+gitment.render('gitmentContainer')
+</script>
+
+  
+  
+</article>
+</section>
+        <aside id="sidebar">
+  
+    <div class="widget-box">
+  <div class="avatar-box">
+    <img class="avatar" src="/images/default-avatar.jpeg" title="图片来自亚索">
+    <h3 class="avatar-name">
+      
+        最快乐的哈噻
+      
+    </h3>
+    <p class="avatar-slogan">
+      自己打败自己是最可悲的失败，自己战胜自己是最可贵的胜利。
+    </p>
+  </div>
+</div>
+
+  
+    <div class="widget tag">
+  <h3 class="title">日历云</h3>
+  <div id="calendar"></div>
+</div>
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/IO/" style="font-size: 10px;">IO</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/29/多线程之Thread中各方法解析记录（一）/">多线程子Thread中各方法的解析记录（一）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/29/IO流原理总结/">IO流原理总结</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/12/Markdown语法记录/">Markdown的语法记录</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      </div>
+      <footer id="footer">
+  <div class="foot-box global-width">
+    &copy; 2019 zhucj &nbsp;&nbsp;
+    驱动于 <a href="http://hexo.io/" target="_blank">Hexo</a>
+    &nbsp;|&nbsp;主题 <a href="https://github.com/yiluyanxia/hexo-theme-antiquity">antiquity</a>
+    <br>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">阁下是第<span id="busuanzi_value_site_pv"></span>个访客</span>
+  </div>
+</footer>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+<!-- add calendar widget -->
+
+  <script src="/js/calendar.js"></script>
+  <script src="/js/languages.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    
+      $('#calendar').aCalendar('zh-CN',{single:true, root:'calendar/'});
+    
+    });
+  </script>
+
+
+    </div>
+    <nav id="mobile-nav" class="mobile-nav-box">
+  <div class="mobile-nav-img mobile-nav-top"></div>
+  
+    <a href="/" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/" class="mobile-nav-link">标签</a>
+  
+    <a href="/" class="mobile-nav-link">照片墙</a>
+  
+  <div class="mobile-nav-img  mobile-nav-bottom"></div>
+</nav>
+  </div>
+</body>
+</html>
