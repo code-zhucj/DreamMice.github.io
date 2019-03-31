@@ -94,12 +94,15 @@
   color: #258fb8;
 }
 .cal-title a:hover,
-.cal-prev:hover,
-.cal-next:hover,
 .cal .cal-foot:hover,
 .cal .cal-foot:focus {
   background-color: #258fb8;
   color: #fff;
+  cursor: pointer;
+}
+.cal-prev:hover,
+.cal-next:hover,
+color #fff {
   cursor: pointer;
 }
 .cal tbody a:hover,
