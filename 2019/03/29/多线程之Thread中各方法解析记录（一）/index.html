@@ -5,7 +5,7 @@
   
 
   
-  <title>多线程子Thread中各方法的解析记录（一） | zhucj-blog</title>
+  <title>多线程之Thread中各方法的解析记录（一） | zhucj-blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
@@ -15,14 +15,14 @@
   <meta name="description" content="背景本系列文章主要是对阅读《java多线程核心技术》后的总结以及对线程API的归纳并对我所认为重要的内容进行记录，方便日后查看。 Thread与Thread对象线程类中Thread.方法与thread.方法的区别：前者主要是对执行代码的线程进行操作，而后者则是对该线程对象进行操作。对于Thread.currentThread()获取的是执行当前代码的线程。对于创建的MyThread而言，执行它构造">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多线程子Thread中各方法的解析记录（一）">
+<meta property="og:title" content="多线程之Thread中各方法的解析记录（一）">
 <meta property="og:url" content="http://zhucj.top/2019/03/29/多线程之Thread中各方法解析记录（一）/index.html">
 <meta property="og:site_name" content="zhucj-blog">
 <meta property="og:description" content="背景本系列文章主要是对阅读《java多线程核心技术》后的总结以及对线程API的归纳并对我所认为重要的内容进行记录，方便日后查看。 Thread与Thread对象线程类中Thread.方法与thread.方法的区别：前者主要是对执行代码的线程进行操作，而后者则是对该线程对象进行操作。对于Thread.currentThread()获取的是执行当前代码的线程。对于创建的MyThread而言，执行它构造">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-29T13:26:57.957Z">
+<meta property="og:updated_time" content="2019-04-01T13:12:28.893Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="多线程子Thread中各方法的解析记录（一）">
+<meta name="twitter:title" content="多线程之Thread中各方法的解析记录（一）">
 <meta name="twitter:description" content="背景本系列文章主要是对阅读《java多线程核心技术》后的总结以及对线程API的归纳并对我所认为重要的内容进行记录，方便日后查看。 Thread与Thread对象线程类中Thread.方法与thread.方法的区别：前者主要是对执行代码的线程进行操作，而后者则是对该线程对象进行操作。对于Thread.currentThread()获取的是执行当前代码的线程。对于创建的MyThread而言，执行它构造">
   
     <link rel="alternate" href="/atom.xml" title="zhucj-blog" type="application/atom+xml">
@@ -68,7 +68,7 @@
       
   
     <h1 class="article-title" itemprop="name">
-      多线程子Thread中各方法的解析记录（一）
+      多线程之Thread中各方法的解析记录（一）
     </h1>
   
 
@@ -188,7 +188,7 @@ gitment.render('gitmentContainer')
       <ul>
         
           <li>
-            <a href="/2019/03/29/多线程之Thread中各方法解析记录（一）/">多线程子Thread中各方法的解析记录（一）</a>
+            <a href="/2019/03/29/多线程之Thread中各方法解析记录（一）/">多线程之Thread中各方法的解析记录（一）</a>
           </li>
         
           <li>
@@ -210,13 +210,14 @@ gitment.render('gitmentContainer')
   <div class="foot-box global-width">
     &copy; 2019 zhucj &nbsp;&nbsp;
     驱动于 <a href="http://hexo.io/" target="_blank">Hexo</a>
-    &nbsp;|&nbsp;主题 <a href="https://github.com/yiluyanxia/hexo-theme-antiquity">antiquity</a>
+    &nbsp;|&nbsp;主题 <a href="https://github.com/code-zhucj/theme">antiquity</a>
     <br>
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span id="busuanzi_container_site_pv">阁下是第<span id="busuanzi_value_site_pv"></span>个访客</span>
   </div>
 </footer>
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+      <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
 
 <script src="/js/jquery-2.0.3.min.js"></script>
 
