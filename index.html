@@ -81,7 +81,7 @@
 </a>
     
     
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/线程/">线程</a></li></ul>
 
   </div>
   
@@ -90,19 +90,18 @@
     
     <div class="article-content article-content-doorframe" itemprop="articleBody">
       
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>本系列文章主要是对阅读《java多线程核心技术》后的总结以及对线程API的归纳并对我所认为重要的内容进行记录，方便日后查看。</p>
-<h2 id="Thread与Thread对象"><a href="#Thread与Thread对象" class="headerlink" title="Thread与Thread对象"></a>Thread与Thread对象</h2><p>线程类中Thread.方法与thread.方法的区别：前者主要是对执行代码的线程进行操作，而后者则是对该线程对象进行操作。<br>对于Thread.currentThread()获取的是执行当前代码的线程。对于创建的MyThread而言，执行它构造方法的是线程main，而执行run方法的是线程myThread。</p>
-<p>验证代码如下：<br><div class="highlight-box" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="false" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//创建一个线程类</span><br><span class="line">public class MyThread extends Thread&#123;</span><br><span class="line"></span><br><span class="line">	   public MyThread(String name)&#123;</span><br><span class="line">		   System.out.println(&quot;执行构造方法的线程：&quot;+Thread.currentThread().getName());</span><br><span class="line">		   super.setName(name);</span><br><span class="line">	   &#125;</span><br><span class="line"></span><br><span class="line">	   public void run()&#123;</span><br><span class="line">		  System.out.println(&quot;执行run方法的线程：&quot;+Thread.currentThread().getName());</span><br><span class="line">	   &#125;</span><br><span class="line">&#125;</span><br><span class="line">//测试类</span><br><span class="line">public class Test&#123;</span><br><span class="line">  public static void main(String[] args)&#123;</span><br><span class="line">    MyThread mt = new MyThread(&quot;myThread&quot;);</span><br><span class="line">	  mt.start();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></p>
-<!--
-<iframe src="https://zhucj.top/" width="880" height="500" frameborder="0" allowfullscreen></iframe>
-<p>–&gt;</p>
--->
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>&emsp;&emsp;本系列文章主要是对阅读《java多线程核心技术》后的总结以及对线程API的归纳并对我所认为重要的内容进行记录，方便日后查看。</p>
+        
+          <p class="article-more-link" align="center">
+            <font size="4"><a href="/2019/03/29/多线程之Thread中各方法解析记录（一）/#more">阅读全文</a><font>
+          </font></font></p>
+        
       
     </div>
     
   </div>
   
-  
+
 </article>
 
   
@@ -133,32 +132,18 @@
     
     <div class="article-content article-content-doorframe" itemprop="articleBody">
       
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>&emsp;&emsp;通过对IO流的学习进行总结，深入了解IO流底层工作原理。</p>
-<h2 id="对流的分类"><a href="#对流的分类" class="headerlink" title="对流的分类"></a>对流的分类</h2><p>&emsp;&emsp;流总体来说可以以两种分类方式进行分类。按输入输入来分可分为输入流与输出流，按字符来分可分为字节流以及字符流。</p>
-<h2 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h2><p>&emsp;&emsp;字节流以字节的方式进行输入输出，对图像或是影像的复制一般是使用字节流实现的。</p>
-<h3 id="输入字节流"><a href="#输入字节流" class="headerlink" title="输入字节流"></a>输入字节流</h3><p>&emsp;&emsp;输入字节流是通过继承InputStream类实现的，这里主要以FileInputStream为例：  </p>
-<p>创建一个读取文件的测试类：<br><div class="highlight-box" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="false" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class IOTest &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] agrs) throws IOException&#123;</span><br><span class="line">      String text = readFile();</span><br><span class="line">      System.out.println(text);</span><br><span class="line">    &#125;</span><br><span class="line">    //读取文件</span><br><span class="line">    public static String inputFile() throws IOException&#123;</span><br><span class="line">      //获取资源文件</span><br><span class="line">      File file = new File(&quot;C:/Users/Soloporvagancia/Desktop/新建文件夹/EE/inputText.txt&quot;);</span><br><span class="line">      //创建输入流</span><br><span class="line">      FileInputStream fis = new FileInputStream(file);</span><br><span class="line">      //创建一个byte数组用于缓冲</span><br><span class="line">      byte[] buf = new byte[1024];</span><br><span class="line">      int len = 0;</span><br><span class="line">      StringBuffer sb = new StringBuffer();</span><br><span class="line">      while((len = fis.read(buf))!=-1)&#123;</span><br><span class="line">          sb.append(new String(buf,0,len));</span><br><span class="line">      &#125;</span><br><span class="line">      //关闭资源</span><br><span class="line">      fis.close();</span><br><span class="line">      return sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></p>
-<p>&emsp;&emsp;对于字节流在读取文件时都是一个字节一个字节的读取数据，这样照成效率低下，因此引入了缓冲区，利用byte数组先存值，然后再一次将数组的内容取出处理，这里数组的大小可以根据实际业务场景进行修改。<br><strong><em>读取完文件后一定要记得将资源关闭，否则其他程序无法对该资源文件进行其他操作。</em></strong>  </p>
-<h3 id="输出字节流"><a href="#输出字节流" class="headerlink" title="输出字节流"></a>输出字节流</h3><p>&emsp;&emsp;输出字节流通过继承OutputStream类实现，以FileOutputStream为例：</p>
-<p>在上IOTest测试类中新增方法outputFile()<br><div class="highlight-box" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="false" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//输出文件</span><br><span class="line">public static void outputFile()&#123;</span><br><span class="line">  //获取输出文件，若是该路径下无该文件则自动创建</span><br><span class="line">  File file = new File(&quot;C:/Users/Soloporvagancia/Desktop/新建文件夹/EE/outputText.txt&quot;);</span><br><span class="line">  String text = &quot;abc&quot;;</span><br><span class="line">  //创建输出流</span><br><span class="line">  FileOutputStream fos = new FileOutputStream(file);</span><br><span class="line">  //创建缓冲数组</span><br><span class="line">  byte[] buf = text.getBytes();</span><br><span class="line">  //将数据写出</span><br><span class="line">  fos.write(buf);</span><br><span class="line">  //关闭资源</span><br><span class="line"> fos.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></p>
-<p>&emsp;&emsp;与输入字节流类似，输出字节流每次只能write一个字节，因此同样通过引入缓冲数组来提交写的效率。需要注意的是使用FileOutputStream写数据时，默认会将原文件覆盖，若是想追加内容应该用FileOutputStream的另一个构造函数FileOutputStream(File file, boolean append),当append为true时追加内容。  </p>
-<h2 id="字符流"><a href="#字符流" class="headerlink" title="字符流"></a>字符流</h2><p>&emsp;&emsp;字符流的特点是可以直接输出中文。字符流相对于字节流来说是多了一个编码与解码过程。</p>
-<h3 id="输入字符流"><a href="#输入字符流" class="headerlink" title="输入字符流"></a>输入字符流</h3><p>输入字符流的基类为Reader，此处以FileReader为例：<br><div class="highlight-box" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="false" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//字符流读取文件</span><br><span class="line">public static void readFile() throws IOException&#123;</span><br><span class="line">  //获取需要读取的文件</span><br><span class="line">  File file = new File(&quot;C:/Users/Soloporvagancia/Desktop/新建文件夹/EE/readText.txt&quot;);</span><br><span class="line">  //创建输入字符流</span><br><span class="line">  FileReader fr = new FileReader(file);</span><br><span class="line">  //创建缓冲流</span><br><span class="line">  BufferedReader br = new BufferedReader(fr);</span><br><span class="line">  StringBuffer sb = new StringBuffer();</span><br><span class="line">  String line = &quot;&quot;;</span><br><span class="line">  //读取数据</span><br><span class="line">  while((line = br.readLine())!=null)&#123;</span><br><span class="line">    sb.append(line);</span><br><span class="line">  &#125;</span><br><span class="line">  System.out.print(sb.toString());</span><br><span class="line">  //关闭资源</span><br><span class="line">  br.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></p>
-<p>&emsp;&emsp;输入字符流同输入字节流类似，都可以用缓冲数组实现，这里直接使用BufferedReader缓冲流。</p>
-<h3 id="输出字符流"><a href="#输出字符流" class="headerlink" title="输出字符流"></a>输出字符流</h3><div class="highlight-box" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="false" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//字符流输出文件</span><br><span class="line">public static void writeFile() throws IOException&#123;</span><br><span class="line">  //需要写入的数据</span><br><span class="line">  String text = &quot;这里是需要写入的内容&quot;;</span><br><span class="line">  //获取需要写入的文件</span><br><span class="line">  File file = new File(&quot;C:/Users/Soloporvagancia/Desktop/新建文件夹/EE/writeText.txt&quot;);</span><br><span class="line">  //创建输出字符流</span><br><span class="line">  FileWriter fw = new FileWriter(file);</span><br><span class="line">  //输出数据</span><br><span class="line">  fw.write(text);</span><br><span class="line">  //关闭资源</span><br><span class="line">  fw.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p>&emsp;&emsp;FileWriter中维护了一个字节数组，写数据会先写到它内部的字节数组中，如果需要真正的的输出到硬盘上是需要执行flush()或close()方法或当字节数组满时才输出。</p>
-<h2 id="缓冲流"><a href="#缓冲流" class="headerlink" title="缓冲流"></a>缓冲流</h2><p>&emsp;&emsp;对于输入输出流来说，因为都是一个字节一个字节的输入或输出数据的，因此使用缓冲的方式提高效率，除了用上面的byte数组作为缓冲区外还可以通过使用BufferedInputStream,BufferedOutputStream这两个类来实现缓冲区的功能。在IOTest测试类中添加以下两个方法：<br><div class="highlight-box" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="false" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">//通过BufferedInputStream读取文件</span><br><span class="line">public static void bufInputFile() throws IOException&#123;</span><br><span class="line">  //获取需要读取的文件</span><br><span class="line">  File file = new File(&quot;C:/Users/Soloporvagancia/Desktop/新建文件夹/EE/inputText.txt&quot;);</span><br><span class="line">  //创建输入流</span><br><span class="line">  FileInputStream fis = new FileInputStream(file);</span><br><span class="line">  //创建缓冲流</span><br><span class="line">  BufferedInputStream bis = new BufferedInputStream(fis);</span><br><span class="line">  StringBuffer sb = new StringBuffer();</span><br><span class="line">  int content=0;</span><br><span class="line">  //读取数据</span><br><span class="line">  while((content = bis.read())!=-1)&#123;</span><br><span class="line">    System.out.print((char)content);</span><br><span class="line">  &#125;</span><br><span class="line">  //关闭资源</span><br><span class="line">  bis.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//通过BufferedOutputStream输出文件</span><br><span class="line">public static void bufOutputFile() throws IOException&#123;</span><br><span class="line">  //需要输出的数据</span><br><span class="line">  String text = &quot;abc&quot;;</span><br><span class="line">  //获取需要输出的文件</span><br><span class="line">  File file = new File(&quot;C:/Users/Soloporvagancia/Desktop/新建文件夹/EE/outputText.txt&quot;);</span><br><span class="line">  //创建输出流</span><br><span class="line">  FileOutputStream fos = new FileOutputStream(file);</span><br><span class="line">  //创建缓冲流</span><br><span class="line">  BufferedOutputStream bos = new BufferedOutputStream(fos);</span><br><span class="line">  //输出数据</span><br><span class="line">  bos.write(text.getBytes());</span><br><span class="line">  //关闭资源</span><br><span class="line">  bos.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></p>
-<p>&emsp;&emsp;从这两个方法来看，使用缓冲区似乎没有什么不一样的地方，读取文本时BufferedInputStream与FileInputStream一样一次只能读取一个字节。通过阅读BufferedInputStream发现,在BufferedInputStream中同样维护了一个字节数组，默认大小为8kb,之所以能提高效率是因为FileInputStream是从硬盘中将数据一个一个读取出来的，而BufferedInputStream是先将数据加载到内存中再一个一个取出来的。因为从内存中直接加载数据要比从硬盘中加载数据来的快，所以BufferedInputStream效率高。BufferedOutputStream同理，也是将数据先放进缓冲数组中，只有执行flush()或close()或内部维护的字节数组满了这三种情况才写入到硬盘中。<br>&emsp;&emsp;上面两个方法之所以没有关闭输入输出流是因为在BufferedInputStream与BufferedOutputStream的源码中close()方法就是用来关闭输入输出流的方法。<br>&emsp;&emsp;BufferedReader原理也是一样，只不过BufferedReader维护的是字符数组，其他原理是一样的。此外BufferedReader还提供了readLine()方法能够一次读取一行。同理，BufferedWriter也是维护了一个8kb的字符数组，并且提供了newLine()方法在输出的时候换行。</p>
-<h2 id="转换流"><a href="#转换流" class="headerlink" title="转换流"></a>转换流</h2><p>&emsp;&emsp;转换流用于将字节流转换为字符流以满足特定场景的需要。输入字节流转换为字符流使用InputStreamReader，输出字节流转换为字符流使用OutputStreamWriter,它们的基类分别为Readery与Writer。以下两个方法即为转为转换流的使用方法：<br><div class="highlight-box" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="false" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">//输入字节流转换为输入字符流</span><br><span class="line">public static void byteToCharReadText() throws IOException&#123;</span><br><span class="line">  File file = new File(&quot;C:/Users/Soloporvagancia/Desktop/新建文件夹/EE/readText.txt&quot;);</span><br><span class="line">  FileInputStream fis = new FileInputStream(file);</span><br><span class="line">  //将字节流转换为字符流</span><br><span class="line">  InputStreamReader isr = new InputStreamReader(fis);//InputStreamReader(InputStream in, String charsetName)构造方法可指定使用的码表</span><br><span class="line">  //使用缓冲流</span><br><span class="line">  BufferedReader br = new BufferedReader(isr);</span><br><span class="line">  StringBuffer sb = new StringBuffer();</span><br><span class="line">  String line = &quot;&quot;;</span><br><span class="line">  while((line = br.readLine())!=null)&#123;</span><br><span class="line">    sb.append(line);</span><br><span class="line">  &#125;</span><br><span class="line">  System.out.print(sb.toString());</span><br><span class="line">  br.close();</span><br><span class="line">  fis.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//输出字节流转换为输出字符流</span><br><span class="line">public static void charToByteWriteText() throws IOException&#123;</span><br><span class="line">  String text = &quot;输出字节流转换为输出字符流&quot;;</span><br><span class="line">  File file = new File(&quot;C:/Users/Soloporvagancia/Desktop/新建文件夹/EE/writeText.txt&quot;);</span><br><span class="line">  FileOutputStream fos = new FileOutputStream(file);</span><br><span class="line">  OutputStreamWriter osw = new OuputStreamWriter(fos);//OutputStreamWriter(OutputStream out, String charsetName)构造方法可指定使用的码表</span><br><span class="line">  BufferedWriter bw = new BufferedWriter(osw);</span><br><span class="line">  bw.write(text);</span><br><span class="line">  bw.close();</span><br><span class="line">  fos.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></p>
-<h2 id="编码与解码"><a href="#编码与解码" class="headerlink" title="编码与解码"></a>编码与解码</h2><p>&emsp;&emsp;在读取或输出文件时经常会出现乱码的现象，其主要原因就是编码与解码所用的码表不一致。只有当编码与解码所用码表保持一致时才不会乱码，现在普遍使用UTF-8进行编码与解码。</p>
-<h2 id="关闭资源"><a href="#关闭资源" class="headerlink" title="关闭资源"></a>关闭资源</h2><p>&emsp;&emsp;在对流操作后应当及时关闭资源，关闭资源应先开后关，后开先关。</p>
-
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>&emsp;&emsp;通过对IO流的学习进行总结，深入了解IO流底层工作原理。</p>
+        
+          <p class="article-more-link" align="center">
+            <font size="4"><a href="/2019/03/29/IO流原理总结/#more">阅读全文</a><font>
+          </font></font></p>
+        
       
     </div>
     
   </div>
   
-  
+
 </article>
 
   
@@ -189,70 +174,18 @@
     
     <div class="article-content article-content-doorframe" itemprop="articleBody">
       
-        <h2 id="一、标题"><a href="#一、标题" class="headerlink" title="一、标题"></a>一、标题</h2><p>标题前加上“#”号，通常一个“#”号表示为一级标题，两个即为二级标题以此类推。</p>
-<p>示例：<code>## 标题</code></p>
-<h2 id="二、字体"><a href="#二、字体" class="headerlink" title="二、字体"></a>二、字体</h2><p>加粗：在要加粗的文字两边加上<font color="red">两个</font>“*”号。示例：<code>**加粗**</code> 效果： <strong>加粗</strong></p>
-<p>斜体：在文字两边加上<font color="red">一个</font>“*”号。示例：<code>*斜体*</code> 效果：<em>斜体</em></p>
-<p>斜体加粗：在文字两边加上<font color="red">三个</font>“*”号。示例：<code>***斜体加粗***</code> 效果：<strong><em>斜体加粗</em></strong></p>
-<p>删除线：在文字两边加上<font color="red">两个</font>“~”号。示例：<code>~删除线~</code> 效果： <del>删除线</del></p>
-<h2 id="三、引用"><a href="#三、引用" class="headerlink" title="三、引用"></a>三、引用</h2><p>在文字前添加“&gt;”表示引用 示例: <code>&gt;引用</code></p>
-<h2 id="四、分割线"><a href="#四、分割线" class="headerlink" title="四、分割线"></a>四、分割线</h2><p>三个“-”或“*”以上可作为分割线 示例：<code>---</code> 或 <code>***</code></p>
-<h2 id="五、图片"><a href="#五、图片" class="headerlink" title="五、图片"></a>五、图片</h2><p>语法：<code>![图片alt](图片地址 &quot;图片title&quot;)</code></p>
-<h2 id="六、超链接"><a href="#六、超链接" class="headerlink" title="六、超链接"></a>六、超链接</h2><p>语法：<code>[超链接名称](超链接地址 &quot;超链接title&quot;)</code><br>示例：<a href="http://zhucj.top" title="zhucj-blog">我的博客</a></p>
-<p>Markdown语法本身并不支持打开新的页面，若是想打开新的页面可以用HTML的a标签实现<br>语法：<code>&lt;a href=&quot;超链接地址&quot;&gt;我的博客&lt;/a&gt;</code><br>示例：<a href="http://zhucj.top" target="zhucj-blog">我的博客</a></p>
-<h2 id="七、列表"><a href="#七、列表" class="headerlink" title="七、列表"></a>七、列表</h2><p>无序列表</p>
-<p>语法：<br>无序列表用“-+*”都可以<br><div class="highlight-box" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="false" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 列表内容</span><br><span class="line">+ 列表内容</span><br><span class="line">* 列表内容</span><br></pre></td></tr></table></figure></div></p>
-<p>示例：</p>
-<ul>
-<li>列表内容<ul>
-<li>列表内容</li>
-</ul>
-</li>
-</ul>
-<p>有序列表</p>
-<p>语法：数字加点，如需要二级内容则在数字前加三个空格<br>如<br> <div class="highlight-box" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="false" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 列表内容</span><br><span class="line">2. 列表内容</span><br><span class="line"></span><br><span class="line">   2.1 列表内容</span><br><span class="line">3. 列表内容</span><br></pre></td></tr></table></figure></div></p>
-<p>示例:</p>
-<ol>
-<li>列表内容</li>
-<li><p>列表内容</p>
-<p>2.1 列表内容</p>
-</li>
-<li>列表内容</li>
-</ol>
-<h2 id="八、表格"><a href="#八、表格" class="headerlink" title="八、表格"></a>八、表格</h2><p>语法：<br><div class="highlight-box" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="false" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">姓名|班级|学号    </span><br><span class="line">--|:--:|--:</span><br><span class="line">张三|一班|01</span><br><span class="line">李四|二班|01</span><br><span class="line"></span><br><span class="line">文字默认居左</span><br><span class="line">-两边加：表示文字居中</span><br><span class="line">-右边加：表示文字居右</span><br></pre></td></tr></table></figure></div></p>
-<p>示例：</p>
-<table>
-<thead>
-<tr>
-<th>姓名</th>
-<th style="text-align:center">班级</th>
-<th style="text-align:right">学号</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>张三</td>
-<td style="text-align:center">一班</td>
-<td style="text-align:right">01</td>
-</tr>
-<tr>
-<td>李四</td>
-<td style="text-align:center">二班</td>
-<td style="text-align:right">01</td>
-</tr>
-</tbody>
-</table>
-<h2 id="九、代码"><a href="#九、代码" class="headerlink" title="九、代码"></a>九、代码</h2><p>语法：单行就是两个反引号 ``，多行就是三个反引号```</p>
-<h2 id="十、其他"><a href="#十、其他" class="headerlink" title="十、其他"></a>十、其他</h2><p>Markdown支持内嵌HTML标签，如上用的a标签以及改变字体的font标签并且支持js</p>
-<hr>
-<p>以上即为Markdown相对常用的一些语法，若有遗漏日后补充</p>
-
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>&emsp;&emsp;本篇博客主要用于记录Markdown常用语法，方便日后查看。</p>
+        
+          <p class="article-more-link" align="center">
+            <font size="4"><a href="/2019/02/12/Markdown语法记录/#more">阅读全文</a><font>
+          </font></font></p>
+        
       
     </div>
     
   </div>
   
-  
+
 </article>
 
   
@@ -292,7 +225,7 @@
   <div class="widget-box">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/IO/" style="font-size: 10px;">IO</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a>
+      <a href="/tags/IO/" style="font-size: 10px;">IO</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a>
     </div>
   </div>
 

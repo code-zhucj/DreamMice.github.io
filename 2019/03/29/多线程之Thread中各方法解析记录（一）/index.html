@@ -12,18 +12,18 @@
   
   <meta name="keywords" content="zhucj-blog">
   
-  <meta name="description" content="背景本系列文章主要是对阅读《java多线程核心技术》后的总结以及对线程API的归纳并对我所认为重要的内容进行记录，方便日后查看。 Thread与Thread对象线程类中Thread.方法与thread.方法的区别：前者主要是对执行代码的线程进行操作，而后者则是对该线程对象进行操作。对于Thread.currentThread()获取的是执行当前代码的线程。对于创建的MyThread而言，执行它构造">
-<meta name="keywords" content="Java">
+  <meta name="description" content="概述&amp;emsp;&amp;emsp;本系列文章主要是对阅读《java多线程核心技术》后的总结以及对线程API的归纳并对我所认为重要的内容进行记录，方便日后查看。">
+<meta name="keywords" content="Java,线程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多线程之Thread中各方法的解析记录（一）">
 <meta property="og:url" content="http://zhucj.top/2019/03/29/多线程之Thread中各方法解析记录（一）/index.html">
 <meta property="og:site_name" content="zhucj-blog">
-<meta property="og:description" content="背景本系列文章主要是对阅读《java多线程核心技术》后的总结以及对线程API的归纳并对我所认为重要的内容进行记录，方便日后查看。 Thread与Thread对象线程类中Thread.方法与thread.方法的区别：前者主要是对执行代码的线程进行操作，而后者则是对该线程对象进行操作。对于Thread.currentThread()获取的是执行当前代码的线程。对于创建的MyThread而言，执行它构造">
+<meta property="og:description" content="概述&amp;emsp;&amp;emsp;本系列文章主要是对阅读《java多线程核心技术》后的总结以及对线程API的归纳并对我所认为重要的内容进行记录，方便日后查看。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-01T13:12:28.893Z">
+<meta property="og:updated_time" content="2019-04-06T20:30:27.993Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程之Thread中各方法的解析记录（一）">
-<meta name="twitter:description" content="背景本系列文章主要是对阅读《java多线程核心技术》后的总结以及对线程API的归纳并对我所认为重要的内容进行记录，方便日后查看。 Thread与Thread对象线程类中Thread.方法与thread.方法的区别：前者主要是对执行代码的线程进行操作，而后者则是对该线程对象进行操作。对于Thread.currentThread()获取的是执行当前代码的线程。对于创建的MyThread而言，执行它构造">
+<meta name="twitter:description" content="概述&amp;emsp;&amp;emsp;本系列文章主要是对阅读《java多线程核心技术》后的总结以及对线程API的归纳并对我所认为重要的内容进行记录，方便日后查看。">
   
     <link rel="alternate" href="/atom.xml" title="zhucj-blog" type="application/atom+xml">
   
@@ -80,7 +80,7 @@
 </a>
     
     
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/线程/">线程</a></li></ul>
 
   </div>
   
@@ -93,7 +93,8 @@
     
     <div class="article-content article-content-doorframe" itemprop="articleBody">
       
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>本系列文章主要是对阅读《java多线程核心技术》后的总结以及对线程API的归纳并对我所认为重要的内容进行记录，方便日后查看。</p>
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>&emsp;&emsp;本系列文章主要是对阅读《java多线程核心技术》后的总结以及对线程API的归纳并对我所认为重要的内容进行记录，方便日后查看。</p>
+<a id="more"></a>
 <h2 id="Thread与Thread对象"><a href="#Thread与Thread对象" class="headerlink" title="Thread与Thread对象"></a>Thread与Thread对象</h2><p>线程类中Thread.方法与thread.方法的区别：前者主要是对执行代码的线程进行操作，而后者则是对该线程对象进行操作。<br>对于Thread.currentThread()获取的是执行当前代码的线程。对于创建的MyThread而言，执行它构造方法的是线程main，而执行run方法的是线程myThread。</p>
 <p>验证代码如下：<br><div class="highlight-box" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="false" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//创建一个线程类</span><br><span class="line">public class MyThread extends Thread&#123;</span><br><span class="line"></span><br><span class="line">	   public MyThread(String name)&#123;</span><br><span class="line">		   System.out.println(&quot;执行构造方法的线程：&quot;+Thread.currentThread().getName());</span><br><span class="line">		   super.setName(name);</span><br><span class="line">	   &#125;</span><br><span class="line"></span><br><span class="line">	   public void run()&#123;</span><br><span class="line">		  System.out.println(&quot;执行run方法的线程：&quot;+Thread.currentThread().getName());</span><br><span class="line">	   &#125;</span><br><span class="line">&#125;</span><br><span class="line">//测试类</span><br><span class="line">public class Test&#123;</span><br><span class="line">  public static void main(String[] args)&#123;</span><br><span class="line">    MyThread mt = new MyThread(&quot;myThread&quot;);</span><br><span class="line">	  mt.start();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></p>
 <!--
@@ -141,7 +142,7 @@ gitment.render('gitmentContainer')
 </script>
 
   
-  
+
 </article>
 </section>
         <aside id="sidebar">
@@ -176,7 +177,7 @@ gitment.render('gitmentContainer')
   <div class="widget-box">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/IO/" style="font-size: 10px;">IO</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a>
+      <a href="/tags/IO/" style="font-size: 10px;">IO</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a>
     </div>
   </div>
 
