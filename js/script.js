@@ -25,6 +25,7 @@
     });
   });
 
+  $('.code').attr("readonly",true);
   $('.search-form-input').on('blur', function(){
     startSearchAnim();
     $searchWrap.removeClass('on');
