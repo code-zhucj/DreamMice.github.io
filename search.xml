@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[十大排序算法]]></title>
+    <url>%2F2019%2F04%2F07%2F%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[概述&emsp;&emsp;归纳常见的十大排序算法。 算法表格$n^2$]]></content>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[多线程之Thread中各方法的解析记录（一）]]></title>
     <url>%2F2019%2F03%2F29%2F%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8BThread%E4%B8%AD%E5%90%84%E6%96%B9%E6%B3%95%E8%A7%A3%E6%9E%90%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%2F</url>
     <content type="text"><![CDATA[概述&emsp;&emsp;本系列文章主要是对阅读《java多线程核心技术》后的总结以及对线程API的归纳并对我所认为重要的内容进行记录，方便日后查看。 Thread与Thread对象线程类中Thread.方法与thread.方法的区别：前者主要是对执行代码的线程进行操作，而后者则是对该线程对象进行操作。对于Thread.currentThread()获取的是执行当前代码的线程。对于创建的MyThread而言，执行它构造方法的是线程main，而执行run方法的是线程myThread。 验证代码如下：12345678910111213141516171819//创建一个线程类public class MyThread extends Thread&#123; public MyThread(String name)&#123; System.out.println(&quot;执行构造方法的线程：&quot;+Thread.currentThread().getName()); super.setName(name); &#125; public void run()&#123; System.out.println(&quot;执行run方法的线程：&quot;+Thread.currentThread().getName()); &#125;&#125;//测试类public class Test&#123; public static void main(String[] args)&#123; MyThread mt = new MyThread(&quot;myThread&quot;); mt.start(); &#125;&#125;]]></content>

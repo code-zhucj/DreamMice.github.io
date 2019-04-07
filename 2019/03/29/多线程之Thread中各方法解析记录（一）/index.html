@@ -99,7 +99,7 @@
 <p>验证代码如下：<br><div class="highlight-box" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="false" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//创建一个线程类</span><br><span class="line">public class MyThread extends Thread&#123;</span><br><span class="line"></span><br><span class="line">	   public MyThread(String name)&#123;</span><br><span class="line">		   System.out.println(&quot;执行构造方法的线程：&quot;+Thread.currentThread().getName());</span><br><span class="line">		   super.setName(name);</span><br><span class="line">	   &#125;</span><br><span class="line"></span><br><span class="line">	   public void run()&#123;</span><br><span class="line">		  System.out.println(&quot;执行run方法的线程：&quot;+Thread.currentThread().getName());</span><br><span class="line">	   &#125;</span><br><span class="line">&#125;</span><br><span class="line">//测试类</span><br><span class="line">public class Test&#123;</span><br><span class="line">  public static void main(String[] args)&#123;</span><br><span class="line">    MyThread mt = new MyThread(&quot;myThread&quot;);</span><br><span class="line">	  mt.start();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></p>
 <!--
 <iframe src="https://zhucj.top/" width="880" height="500" frameborder="0" allowfullscreen></iframe>
-<p>–&gt;</p>
+<p>—&gt;</p>
 -->
       
     </div>
@@ -113,6 +113,15 @@
     
 <nav id="article-nav">
   <div class="article-nav-block">
+    
+      <a href="/2019/04/07/十大排序算法/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption"></strong>
+        <div class="article-nav-title">
+          
+            十大排序算法
+          
+        </div>
+      </a>
     
   </div>
   <div class="article-nav-block">
@@ -177,7 +186,7 @@ gitment.render('gitmentContainer')
   <div class="widget-box">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/IO/" style="font-size: 10px;">IO</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a>
+      <a href="/tags/IO/" style="font-size: 10px;">IO</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/线程/" style="font-size: 10px;">线程</a>
     </div>
   </div>
 
@@ -187,6 +196,10 @@ gitment.render('gitmentContainer')
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/04/07/十大排序算法/">十大排序算法</a>
+          </li>
         
           <li>
             <a href="/2019/03/29/多线程之Thread中各方法解析记录（一）/">多线程之Thread中各方法的解析记录（一）</a>
