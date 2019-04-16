@@ -275,28 +275,39 @@ html, body, #fullpage{
   overflow: hidden;
   margin-right: 20px;
 }
-#sidebar {
-  width: 24%;
-  min-width: 220px;
+
+.widget-box-left{
+  padding-left: 0px;
+  position: fixed;
 }
-#middlecontent.sidebar-left #main{
-  order: 1;
+.widget-box-right{
+  margin-right: 180px;
+  margin-left: 0px;
+  position: fixed;
+}
+#middlecontent.sidebar-lr #sidebar_left{
+  width: 25%;
+  margin-left: 0;
+}
+#middlecontent.sidebar-lr #main{
+
+  margin-right: 40px;
+  margin-left: 40px;
+}
+#middlecontent.sidebar-lr #sidebar_right{
+  width: 25%;
   margin-right: 0;
-  margin-left: 20px;
+  position: relative;
 }
-#middlecontent.sidebar-false #main{
-  width: 100%;
-  margin-right: 0;
-}
-#middlecontent.sidebar-false #sidebar{
-  display: none;
-}
-.widget-box {
-  margin-bottom: 50px;
+
+.widget-box{
+  margin:0px auto 50px 0px;
   position: relative;
   padding: 30px;
   background: rgba(255, 255, 255, .85)
 }
+
+
 .widget-box::before, .widget-box::after {
   content: "";
   display: block;
