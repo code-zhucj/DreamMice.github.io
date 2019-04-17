@@ -277,19 +277,17 @@ html, body, #fullpage{
 }
 
 .widget-box-left{
-  width: 18%;
+  padding-left: 0px;
   position: fixed;
-
 }
 .widget-box-right{
-  width: 18%;
+  margin-right: 180px;
+  margin-left: 0px;
   position: fixed;
 }
 #middlecontent.sidebar-lr #sidebar_left{
-  display: flex;
   width: 25%;
   margin-left: 0;
-  justify-content: flex-end;
 }
 #middlecontent.sidebar-lr #main{
 
@@ -297,14 +295,12 @@ html, body, #fullpage{
   margin-left: 40px;
 }
 #middlecontent.sidebar-lr #sidebar_right{
-  display: flex;
   width: 25%;
   margin-right: 0;
-  justify-content: flex-start;
+  position: relative;
 }
 
 .widget-box{
-  width: 100%;
   margin:0px auto 50px 0px;
   position: relative;
   padding: 30px;
