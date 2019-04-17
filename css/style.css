@@ -282,9 +282,7 @@ html, body, #fullpage{
 
 }
 .widget-box-right{
-  position: fixed;
   width: 18%;
-  padding-left: 0px;
   position: fixed;
 }
 #middlecontent.sidebar-lr #sidebar_left{
