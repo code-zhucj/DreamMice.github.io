@@ -277,6 +277,7 @@ html, body, #fullpage{
 }
 
 .widget-box-left{
+  width: 20%;
   padding-left: 0px;
   position: fixed;
 }
@@ -297,10 +298,10 @@ html, body, #fullpage{
 #middlecontent.sidebar-lr #sidebar_right{
   width: 25%;
   margin-right: 0;
-  position: relative;
 }
 
 .widget-box{
+  width: 280px;
   margin:0px auto 50px 0px;
   position: relative;
   padding: 30px;
