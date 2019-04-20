@@ -1,13 +1,10 @@
 (function($){
   var middlecontent = document.getElementById("middlecontent");
   middlecontent.style.height = document.body.scrollHeight+"px";
-alert(ismobile());
+
   if(ismobile()){
     resize();
   }
-
-
-
 window.onresize = function(){
   resize();
 }
