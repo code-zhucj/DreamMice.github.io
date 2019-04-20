@@ -276,12 +276,12 @@ html, body, #fullpage{
   margin-right: 20px;
 }
 
-.widget-box-left{
+#widget-box-left{
   width: 18%;
   position: fixed;
 
 }
-.widget-box-right{
+#widget-box-right{
   width: 18%;
   position: fixed;
 }
@@ -305,6 +305,7 @@ html, body, #fullpage{
 
 .widget-box{
   width: 100%;
+  min-width:270px;
   margin:0px auto 50px 0px;
   position: relative;
   padding: 30px;

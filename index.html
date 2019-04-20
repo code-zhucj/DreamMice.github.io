@@ -62,7 +62,7 @@
 
       <div id="middlecontent" title class="global-width sidebar-lr">
         <div id="sidebar_left">
-  <div class="widget-box-left">
+  <div id="widget-box-left">
     
       <div class="widget-box">
   <div class="avatar-box">
@@ -430,7 +430,7 @@
 </section>
         <div id="sidebar_right">
 
-    <div class="widget-box-right">
+    <div id="widget-box-right">
       
         <div class="widget-box">
   <div class="widget tag">
@@ -496,5 +496,21 @@
   <div class="mobile-nav-img  mobile-nav-bottom"></div>
 </nav>
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 </html>
