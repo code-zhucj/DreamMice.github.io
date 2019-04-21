@@ -41,7 +41,6 @@ function ismobile() {
       if (system.win || system.mac || system.xll||system.ipad) {
           return false;
       } else {
-
           return true;//移动端
       }
  }

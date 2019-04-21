@@ -73,7 +73,7 @@ figure {
   outline: 0;
   font-weight: inherit;
   font-style: inherit;
-  font-family: inherit;
+  font-family: LiSu;
   font-size: 100%;
   vertical-align: baseline;
 }
@@ -120,7 +120,12 @@ body{
   line-height: 1.5;
   color: #333;
   background: #FAF3E1;
-  font-size: 14px;
+  background-image: url('../images/bg.jpg');
+  background-color: #C7C9EA;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  font-size: 18px;
   font-family: Arial, Roboto, "Droid Sans", "Hiragino Sans GB", "Microsoft YaHei", "Simsun", STXihei, "sans-serif";
 }
 
@@ -176,20 +181,23 @@ html, body, #fullpage{
   height: 100%;
 }
 #fullpage {
+  overflow: hidden;
   position: relative;
 }
 #wrapper {
-  background-image: url('../images/bg.jpg');
-  background-color: #C7C9EA;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
   position: absolute;
   right: 0;
   width: 100%;
+  height: 865px;
+  overflow-x: hidden;
+  overflow-y: scroll;
   transition: 0.2s ease-out;
   z-index: 1;
 }
+#wrapper::-webkit-scrollbar {
+    display: none;
+}
+
 .mobile-nav-on {
   overflow: hidden;
 }
@@ -215,9 +223,15 @@ html, body, #fullpage{
   width: 80%;
   margin: 0 auto;
 }
-#header {
-  position: relative;
+#zw{
+  width:100%;
   height: 50px;
+}
+#header {
+  position: fixed;
+  height: 50px;
+  width: 100%;
+  z-index:3;
   box-shadow: 0 1px 6px rgba(0, 0, 0, .3)
 }
 .head-box {
@@ -272,9 +286,44 @@ html, body, #fullpage{
 }
 #main {
   width: 75%;
-  overflow: hidden;
+  height:800px;
+  overflow-x: hidden;
+  overflow-y: hidden;
   margin-right: 20px;
 }
+
+/*start*/
+#main:hover{
+    overflow-y: auto;
+  }
+#main::-webkit-scrollbar{
+  width: 10px;
+}
+/*定义滚动条轨道 内阴影+圆角*/
+#main::-webkit-scrollbar-track{
+    /*滚动条的背景区域的内阴影*/
+    box-shadow:0px 1px 3px rgba(255, 255, 255, 0.11) inset;
+
+    /*滚动条的背景区域的圆角*/
+    border-radius: 10px;
+
+    /*滚动条的背景颜色*/
+    background-color: transparent;
+}
+
+/*定义滑块 内阴影+圆角*/
+#main::-webkit-scrollbar-thumb
+{
+    /*滚动条的内阴影*/
+    box-shadow:0px 1px 3px rgba(0,0,0,0.1) inset;
+
+    /*滚动条的圆角*/
+    border-radius: 10px;
+
+    /*滚动条的背景颜色*/
+    background-color: #aaa;
+}
+/*end*/
 
 #widget-box-left{
   width: 18%;
@@ -685,7 +734,7 @@ html, body, #fullpage{
   border: 1px solid rgba(190, 126, 74, .3);
   padding: 20px;
   background: rgba(255, 255, 255, .85);
-  margin-bottom: 50px;
+  margin-bottom: 0px;
   text-align: center;
   display: flex;
   justify-content: center;

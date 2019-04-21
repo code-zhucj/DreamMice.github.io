@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title></title>
+    <url>%2F2019%2F04%2F21%2F01%20-%20%E5%89%AF%E6%9C%AC%20(5)%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2019%2F04%2F21%2F01%20-%20%E5%89%AF%E6%9C%AC%20(4)%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2019%2F04%2F21%2F01%20-%20%E5%89%AF%E6%9C%AC%20(3)%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2019%2F04%2F21%2F01%20-%20%E5%89%AF%E6%9C%AC%20(2)%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2019%2F04%2F21%2F01%20-%20%E5%89%AF%E6%9C%AC%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2019%2F04%2F21%2F01%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[插入排序]]></title>
     <url>%2F2019%2F04%2F14%2F%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F%2F</url>
     <content type="text"><![CDATA[概述&emsp;&emsp;插入排序原理及优化。 原理&emsp;&emsp;从第二个元素开始，与前面的元素进行比较，若前一个元素小于后一个元素则交换位置，以此类推，最终取得结果。 Java实现123456789101112//插入排序 public static void insertion()&#123; int[] arr = &#123;9,6,1,5,3&#125;; for(int i=1;i&lt;arr.length;i++)&#123; for(int j=i;j&gt;0;j--)&#123; if(arr[j]&lt;arr[j-1])&#123; swop(arr,j,j-1); &#125; &#125; print(arr); &#125; &#125; 优化验证&emsp;&emsp;通过对数器验证算法正确性，获取对数器与计时器。]]></content>
