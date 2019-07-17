@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[学习笔记之HashCode]]></title>
+    <url>%2F2019%2F07%2F17%2Fhashcode%2F</url>
+    <content type="text"><![CDATA[概述&emsp;&emsp;HashCode的作用 equals方法equals在类中的实现： 1234567891011121314151617181920212223242526272829303132333435363738394041//Object 中equals()public boolean equals(Object obj) &#123; return (this == obj);&#125;//object 中hashcode()public native int hashCode();//String 中equals()public boolean equals(Object anObject) &#123; if (this == anObject) &#123; return true; &#125; if (anObject instanceof String) &#123; String anotherString = (String)anObject; int n = value.length; if (n == anotherString.value.length) &#123; char v1[] = value; char v2[] = anotherString.value; int i = 0; while (n-- != 0) &#123; if (v1[i] != v2[i]) return false; i++; &#125; return true; &#125; &#125; return false; &#125;//String 中hashcode（）public int hashCode() &#123; int h = hash; if (h == 0 &amp;&amp; value.length &gt; 0) &#123; char val[] = value; for (int i = 0; i &lt; value.length; i++) &#123; h = 31 * h + val[i];//此处使用 &#125; hash = h; &#125; return h; &#125; 对两个对象比较时是需要重写equals方法的，不重写该方法时只是比较两个引用是否指向同一对象，重写往往需要同时重写hashcode方法 哈希表由数组与链表结合实现，数组中的每个元素中所存放的所有存放的所有数据的hashcode值相同，因此可以快速定位到该数据所在位置，这就要求数组中的每个元素中所存放数据的个数有尽可能的均匀。]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[插入排序]]></title>
     <url>%2F2019%2F04%2F14%2F%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F%2F</url>
     <content type="text"><![CDATA[概述&emsp;&emsp;插入排序原理及优化。 原理&emsp;&emsp;从第二个元素开始，与前面的元素进行比较，若前一个元素小于后一个元素则交换位置，以此类推，最终取得结果。 Java实现123456789101112//插入排序 public static void insertion()&#123; int[] arr = &#123;9,6,1,5,3&#125;; for(int i=1;i&lt;arr.length;i++)&#123; for(int j=i;j&gt;0;j--)&#123; if(arr[j]&lt;arr[j-1])&#123; swop(arr,j,j-1); &#125; &#125; print(arr); &#125; &#125; 优化验证&emsp;&emsp;通过对数器验证算法正确性，获取对数器与计时器。]]></content>
